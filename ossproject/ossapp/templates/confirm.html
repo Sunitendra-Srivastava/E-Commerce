@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block title %}
+confirmation page
+{% endblock %}
+{% block content %}
+
+
+{% if method == "add_to_cart" %}
+{% for item in cart %}
+{{item.product.name}}
+{% endfor %}
+<a href="{% url 'checkout' %}">Confirm Order</a>
+{% else %}
+<form action="{% url 'checkout' %}" method="post">
+    {% csrf_token %}
+    <div class="container-fluid">
+        <div class="row" style="height:500px">
+            <div class="col-sm-2"></div>
+            <br/>
+            <div class="col-sm-8 bg-warning" style="border-radius:40px;height:500px;border"><br/>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <input type="text" name="productid" value="{{product.id}}" hidden>
+                        <br/><input type="email" name="email" value="{{customer.emailaddress}}" hidden>
+                        <img name="image" src="{{product.image.url}}" class="card-img-top" alt=""
+                             style="height:25vw;width:25vw;object-fit:cover;border-radius:20px;margin-left:40px"/>
+                    </div>
+                    <div class="col-sm-6" >
+                        <h4>{{product.name}}</h4>
+                        <h4>Quantity - <input type="number" name="quantity" value="1" style="width:50px"></h4>
+                        <h4>{{product.price}}</h4>
+                        <textarea name="address" style="height:150px;width:300px">{{customer.address}}</textarea>
+                        <input type="text" name="pincode" value="{{customer.pincode}}">
+                        <button type="submit" class="btn btn-light">Checkout</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-2"></div>
+        </div>
+
+    </div>
+</form>
+
+{% endif %}
+
+{% endblock %}
+
+

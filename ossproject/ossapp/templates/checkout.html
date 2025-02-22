@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block title %}
+confirmation page
+{% endblock %}
+{% block content %}
+
+
+
+
+    {% csrf_token %}
+    <div class="container-fluid">
+        <div class="row" style="height:500px;">
+            <div class="col-sm-2"></div>
+            <br/>
+            <div class="col-sm-8 bg-warning" style="border-radius:40px;height:500px;border: 2px solid black; align-items: center; align-content: center; text-align: center;"><br/>   
+                <h1>
+                    Your Order is placed.
+                </h1>                
+            </div>
+            <div class="col-sm-2"></div>
+        
+
+{% endblock %}
